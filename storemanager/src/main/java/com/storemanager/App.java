@@ -2,7 +2,7 @@ package com.storemanager;
 
 import java.util.Scanner;
 
-import com.storemanager.Cliente.Cliente;
+import com.storemanager.Cliente.MenuCliente;
 import com.storemanager.Producto.MenuProducto;
 
 /**
@@ -16,7 +16,7 @@ public class App {
 
         int seleccion = 0;
 
-        System.out.println("===================");
+        System.out.println("\n===================");
         System.out.println("   STORE MANAGER   ");
         System.out.println("===================");
         System.out.println("1. Gestionar productos");
@@ -34,10 +34,12 @@ public class App {
             case 1:
                 MenuProducto producto = new MenuProducto();
                 producto.menu();
+                break;
 
             case 2:
-                Cliente cliente = new Cliente();
-                cliente.MenuCliente();
+                MenuCliente cliente = new MenuCliente();
+                cliente.menu();
+                break;
 
         }
 

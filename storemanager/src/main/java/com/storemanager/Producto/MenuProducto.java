@@ -2,6 +2,8 @@ package com.storemanager.Producto;
 
 import java.util.Scanner;
 
+import com.storemanager.App;
+
 public class MenuProducto {
 
     public static void menu() {
@@ -27,12 +29,25 @@ public class MenuProducto {
             case 1:
                 productosService.añadirProducto();
                 MenuProducto.menu();
-                
+
             case 2:
                 productosService.buscarProducto();
                 MenuProducto.menu();
 
-            
+            case 3:
+                productosService.listarProductos();
+                MenuProducto.menu();
+
+            case 4:
+                productosService.modificarProducto();
+                MenuProducto.menu();
+
+            case 5:
+                productosService.eliminarProducto();
+                MenuProducto.menu();
+
+            case 0:
+                App.main(null);
         }
 
     }
