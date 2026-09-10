@@ -310,4 +310,14 @@ public class ClientesService {
         }
     }
 
+    public static Cliente buscarClientePorId(int id) {
+
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).id == id) {
+                return clientes.get(i);
+            }
+        }
+        return null;
+    }
+
 }

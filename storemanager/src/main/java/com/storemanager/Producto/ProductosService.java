@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+import com.storemanager.App;
+
 public class ProductosService {
 
     public static final Scanner es = new Scanner(System.in).useLocale(Locale.US);
@@ -101,7 +103,7 @@ public class ProductosService {
 
     public static void listarProductos() {
 
-        System.out.println("\n======== BUSCAR PRODUCTO ========");
+        System.out.println("\n======== LISTAR PRODUCTOS ========");
 
         for (int i = 0; i < producto.size(); i++) {
             System.out.println(
@@ -274,5 +276,32 @@ public class ProductosService {
                 System.out.println("\n[✅] ¡Producto eliminado correctamente!");
                 break;
         }
+    }
+
+    public static void consultarStock() {
+
+        System.out.println("\n======== CONSULTAR STOCK ========");
+
+        if (producto.isEmpty()) {
+            System.out.println("\n[ℹ️] No hay productos registrados.");
+            App.main(null);
+        }
+
+        for (int i = 0; i < producto.size(); i++) {
+            System.out.println("\n[🆔] ID: " + producto.get(i).id);
+            System.out.println("[📦] Producto: " + producto.get(i).nombre);
+            System.out.println("[💰] Precio: " + producto.get(i).precio + "€");
+            System.out.println("[📊] Stock: " + producto.get(i).stock);
+        }
+    }
+
+    public static Productos buscarProductoPorId(int id) {
+
+        for (int i = 0; i < producto.size(); i++) {
+            if (producto.get(i).id == id) {
+                return producto.get(i);
+            }
+        }
+        return null;
     }
 }

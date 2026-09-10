@@ -2,6 +2,8 @@ package com.storemanager.Cliente;
 
 import java.util.Scanner;
 
+import com.storemanager.App;
+
 public class MenuCliente {
 
     public static void menu() {
@@ -43,6 +45,9 @@ public class MenuCliente {
             case 5:
                 clienteservice.eliminarCliente();
                 MenuCliente.menu();
+
+            case 0:
+                App.main(null);    
         }
     }
 }
