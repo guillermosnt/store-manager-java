@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.storemanager.api.dto.ProductoDTO;
 import com.storemanager.api.model.Producto;
 import com.storemanager.api.service.ProductoService;
 
@@ -25,25 +26,23 @@ public class ProductoController {
     }
 
     @GetMapping("/productos")
-    public List<Producto> obtenerProductos() {
+    public List<ProductoDTO> obtenerProductos() {
         return productoService.obtenerProductos();
     }
 
     // Con @Valid lo que consigo es que compruebe todas las reglas que tiene
     // Productos.
     @PostMapping("/productos")
-    public Producto crearProducto(@Valid @RequestBody Producto producto) {
-        return productoService.crearProducto(producto);
+    public Producto crearProducto(@Valid @RequestBody ProductoDTO productoDTO) {
+        return productoService.crearProducto(productoDTO);
     }
 
     @PutMapping("/productos/{id}")
-    public Producto actualizarProducto(@PathVariable Integer id, @RequestBody Producto producto) {
-        return productoService.actualizarProducto(id, producto);
-    }
+    public Producto actualizarProducto(
+            @PathVariable Integer id,
+            @Valid @RequestBody ProductoDTO productoDTO) {
 
-    @GetMapping("/productos/{id}")
-    public Producto obtenerProductoPorId(@PathVariable Integer id) {
-        return productoService.obtenerProductoPorId(id);
+        return productoService.actualizarProducto(id, productoDTO);
     }
 
     @DeleteMapping("/productos/{id}")

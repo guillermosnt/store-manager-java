@@ -1,0 +1,36 @@
+ * ANOTACIONES DE SPRING
+ *
+ * @RestController
+ * -> Indica que esta clase es un Controller REST.
+ * -> Se encarga de recibir peticiones HTTP y devolver
+ *    respuestas normalmente en formato JSON.
+ *
+ * @GetMapping("/clientes")
+ * -> Atiende peticiones GET a /clientes.
+ *
+ * @GetMapping("/clientes/{id}")
+ * -> Atiende GET a un cliente concreto.
+ * -> {id} es una variable de la URL.
+ * -> Ejemplo: /clientes/1
+ *
+ * @PostMapping("/clientes")
+ * -> Atiende peticiones POST para crear un cliente.
+ *
+ * @PutMapping("/clientes/{id}")
+ * -> Atiende peticiones PUT para modificar un cliente.
+ *
+ * @DeleteMapping("/clientes/{id}")
+ * -> Atiende peticiones DELETE para eliminar un cliente.
+ *
+ * @RequestBody
+ * -> Recoge el JSON enviado en el cuerpo de la petición
+ *    y lo convierte en un objeto Java.
+ *
+ * @PathVariable
+ * -> Recoge un valor de la URL.
+ * -> Ejemplo: /clientes/5 -> id = 5
+ *
+ * @Valid
+ * -> Activa las validaciones definidas en el objeto recibido.
+ *
+ * ------------------------------------------
