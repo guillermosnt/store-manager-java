@@ -1,0 +1,49 @@
+RELACIONES JPA
+--------------
+
+@OneToMany
+→ Un elemento tiene muchos elementos.
+
+Ejemplo:
+Un Cliente puede tener muchas Ventas.
+
+@ManyToOne
+→ Muchos elementos pertenecen a uno.
+
+Ejemplo:
+Muchas Ventas pueden pertenecer a un Cliente.
+
+
+ESTRUCTURA DE STOREMANAGER:
+
+Cliente 1 ───── N Venta
+
+Venta 1 ─────── N DetalleVenta
+
+Producto 1 ──── N DetalleVenta
+
+
+DetalleVenta sirve para guardar información específica
+de un producto dentro de una venta:
+
+- Producto
+- Cantidad
+- Precio
+- Subtotal
+
+
+@OneToMany
+-----------
+
+Un objeto tiene una lista de otros objetos.
+
+Ejemplo:
+Cliente tiene muchas ventas.
+
+mappedBy = "cliente"
+
+Significa:
+La relación ya existe en el atributo "cliente"
+de la clase Venta.
+
+No crea otra tabla intermedia.

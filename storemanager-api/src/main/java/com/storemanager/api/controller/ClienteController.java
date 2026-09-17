@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.storemanager.api.dto.ClienteDTO;
 import com.storemanager.api.model.Cliente;
 import com.storemanager.api.service.ClienteService;
+
+import jakarta.validation.Valid;
 
 @RestController
 public class ClienteController {
@@ -28,8 +31,10 @@ public class ClienteController {
     }
 
     @PostMapping("/clientes")
-    public Cliente crearCliente(@RequestBody Cliente cliente) {
-        return clienteService.crearCliente(cliente);
+    public Cliente crearCliente(
+            @Valid @RequestBody ClienteDTO clienteDTO) {
+
+        return clienteService.crearCliente(clienteDTO);
     }
 
     @GetMapping("/clientes/{id}")
@@ -40,9 +45,9 @@ public class ClienteController {
     @PutMapping("/clientes/{id}")
     public Cliente actualizarCliente(
             @PathVariable Integer id,
-            @RequestBody Cliente cliente) {
+            @Valid @RequestBody ClienteDTO clienteDTO) {
 
-        return clienteService.actualizarCliente(id, cliente);
+        return clienteService.actualizarCliente(id, clienteDTO);
     }
 
     @DeleteMapping("/clientes/{id}")

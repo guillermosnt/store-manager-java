@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.storemanager.api.dto.ClienteDTO;
+import com.storemanager.api.exception.ClienteNoEncontradoException;
 import com.storemanager.api.model.Cliente;
 import com.storemanager.api.repository.ClienteRepository;
 
@@ -20,27 +22,37 @@ public class ClienteService {
         return clienterepository.findAll();
     }
 
-    public Cliente crearCliente(Cliente cliente) {
+    public Cliente crearCliente(ClienteDTO clienteDTO) {
+        Cliente cliente = new Cliente();
+
+        cliente.setNombre(clienteDTO.getNombre());
+        cliente.setEmail(clienteDTO.getEmail());
+        cliente.setTelefono(clienteDTO.getTelefono());
+
         return clienterepository.save(cliente);
     }
 
     public Cliente obtenerClientePorId(Integer id) {
         return clienterepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+                .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado"));
     }
 
-    public Cliente actualizarCliente(Integer id, Cliente cliente) {
+    public Cliente actualizarCliente(Integer id, ClienteDTO clienteDTO) {
         Cliente clienteExistente = clienterepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+                .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado"));
 
-        clienteExistente.setNombre(cliente.getNombre());
-        clienteExistente.setEmail(cliente.getEmail());
-        clienteExistente.setTelefono(cliente.getTelefono());
+        clienteExistente.setNombre(clienteDTO.getNombre());
+        clienteExistente.setEmail(clienteDTO.getEmail());
+        clienteExistente.setTelefono(clienteDTO.getTelefono());
 
         return clienterepository.save(clienteExistente);
     }
 
     public void eliminarCliente(Integer id) {
-        clienterepository.deleteById(id);
+
+        Cliente cliente = clienterepository.findById(id)
+                .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado"));
+
+        clienterepository.delete(cliente);
     }
 }

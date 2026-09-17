@@ -15,4 +15,10 @@ public class ProductoExceptionHandler {
     public String productoNoEncontrado(ProductoNoEncontradoException ex) {
         return ex.getMessage();
     }
+
+    @ExceptionHandler(ClienteNoEncontradoException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String clienteNoEncontrado(ClienteNoEncontradoException ex) {
+        return ex.getMessage();
+    }
 }
